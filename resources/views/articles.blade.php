@@ -16,10 +16,10 @@
                                         <h2>{{ $item->title }}</h2>
                                     </a>
                                 </header>
-                                <?php
-                                    dd($item->author);
-                                ?>
-                                {{-- <p> {{ $item->author->name }}</p> --}}
+                                {{-- <?php
+                                    dd($item->user);
+                                ?> --}}
+                                <p> {{ $item->author->name }}</p>
                                 <p> {{ $item->body }}</p>
                                 <footer class="align-center">
                                     <a href="#" class="button alt">Learn More</a>

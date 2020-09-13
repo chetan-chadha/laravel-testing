@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Auth
-
+use Illuminate\Support\Facades\Auth;
 class ArticleController extends Controller
 {
     /**
@@ -13,10 +12,6 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     public function index()
     {
         //
@@ -33,8 +28,11 @@ class ArticleController extends Controller
     public function create()
     {
         //
-        dd(Auth::check());
-        return view("articles.create");
+        if (Auth::check()) {
+            // The user is logged in...
+            return view("articles.create");
+        }
+        return redirect('/login');
     }
 
     /**
