@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class ArticleController extends Controller
 {
     /**
@@ -15,9 +16,9 @@ class ArticleController extends Controller
     public function index()
     {
         //
-        $article =  Article::all();
-        
-        return view("articles", ['article' => $article] );
+        $article = Article::all();
+
+        return view('articles', ['article' => $article]);
     }
 
     /**
@@ -30,21 +31,23 @@ class ArticleController extends Controller
         //
         if (Auth::check()) {
             // The user is logged in...
-            return view("articles.create");
+            return view('articles.create');
         }
+
         return redirect('/login');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         //
-        $article = new Article;
+        $article = new Article();
         $article->user_id = auth()->user()->id;
         $article->title = request('title');
         $article->body = request('body');
@@ -57,21 +60,23 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     * @param \App\Models\Article $article
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($article)
     {
         //
         $article = Article::findOrFail($article);
+
         return $article;
-        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Article  $article
+     * @param \App\Models\Article $article
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Article $article)
@@ -82,8 +87,9 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Article  $article
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Article      $article
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $article)
@@ -94,7 +100,8 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Article  $article
+     * @param \App\Models\Article $article
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $article)
