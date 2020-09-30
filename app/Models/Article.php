@@ -11,6 +11,7 @@ class Article extends Model
 
     public function author()
     {
+        // custom property for accessing user id
         return $this->belongsTo('App\Models\User', 'user_id');
     }
 
