@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        // find all the articles
         $article = Article::all();
 
         return view('articles', ['article' => $article]);
@@ -28,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        // check user is logged in
         if (Auth::check()) {
             // The user is logged in...
             return view('articles.create');
